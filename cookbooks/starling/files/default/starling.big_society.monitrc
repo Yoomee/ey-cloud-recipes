@@ -1,0 +1,6 @@
+check process starling_big_society
+  with pidfile /var/run/starling/big_society.pid
+  start program = "/data/big_society/shared/bin/starling big_society start" as uid deploy and gid deploy
+  stop program = "/data/big_society/shared/bin/starling big_society stop" as uid deploy and gid deploy
+  if totalmem is greater than 100 MB for 2 cycles then restart      # eating up memory?
+  group starling_big_society
